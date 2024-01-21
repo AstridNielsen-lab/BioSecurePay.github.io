@@ -5,6 +5,9 @@
     <td>
       <img src="https://raw.githubusercontent.com/AstridNielsen-lab/BioSecurePay.github.io/master/app 3.jpg" alt="BioSecurePay App">
       <img src="https://raw.githubusercontent.com/AstridNielsen-lab/BioSecurePay.github.io/master/app.jpg" alt="BioSecurePay App">
+      <img src="https://raw.githubusercontent.com/AstridNielsen-lab/BioSecurePay.github.io/master/app 3.jpg" alt="BioSecurePay App">
+      <img src="https://raw.githubusercontent.com/AstridNielsen-lab/BioSecurePay.github.io/master/app 2.jpg" alt="BioSecurePay App">
+      <img src="https://raw.githubusercontent.com/AstridNielsen-lab/BioSecurePay.github.io/master/app.jpg" alt="BioSecurePay App">
     </td>
     <td>
 
