@@ -73,8 +73,7 @@ face_encodings = []  # Inicializar face_encodings globalmente
 
 # Lógica de reconhecimento facial
 def reconhecimento_facial():
-    global frame, face_locations, face_encodings
-    frame = np.array([])  # Adicione esta linha
+    global frame
     nome_identificado = "Desconhecido"
     while True:
         # Capturar um frame
