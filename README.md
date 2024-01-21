@@ -1,6 +1,11 @@
 # BioSecurePay
 
-![BioSecurePay App](https://raw.githubusercontent.com/AstridNielsen-lab/BioSecurePay.github.io/master/app.jpg)
+<table>
+  <tr>
+    <td>
+      <img src="https://raw.githubusercontent.com/AstridNielsen-lab/BioSecurePay.github.io/master/app.jpg" alt="BioSecurePay App">
+    </td>
+    <td>
 
 <h2>Descrição</h2>
 <p>BioSecurePay é um sistema de reconhecimento facial com integração a um formulário web para coleta de dados de interesse.</p>
@@ -35,6 +40,10 @@ source venv/bin/activate  # para sistemas Unix
   <pre><code>python app.py</code></pre>
   <li>Acesse o aplicativo no navegador em <a href="http://127.0.0.1:5000/" target="_blank">http://127.0.0.1:5000/</a>.</li>
 </ol>
+
+</td>
+  </tr>
+</table>
 
 <h2>Estrutura de Diretórios</h2>
 <p>Explicação sobre a estrutura de diretórios do projeto.</p>
@@ -77,5 +86,3 @@ source venv/bin/activate  # para sistemas Unix
 
 <h2>Autor</h2>
 <p>Astrid Nielsen - <a href="https://github.com/AstridNielsen-lab" target="_blank">GitHub</a></p>
-
-
