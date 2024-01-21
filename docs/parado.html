@@ -1,0 +1,48 @@
+<!-- parado.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BioSecurePay - Reconhecimento Facial Parado</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #4CAF50;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border: 2px solid #4CAF50;
+            margin-top: 20px;
+        }
+
+        p {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Reconhecimento Facial Parado</h1>
+
+    {% if imagem_base64 %}
+        <img src="data:image/jpeg;base64, {{ imagem_base64 }}" alt="Reconhecimento Facial Parado">
+        <p>Último frame capturado pela câmera.</p>
+    {% else %}
+        <p>Nenhum frame disponível.</p>
+    {% endif %}
+
+    <a href="/">Voltar para a Página Inicial</a>
+
+</body>
+</html>
