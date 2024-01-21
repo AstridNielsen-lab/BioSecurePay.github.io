@@ -35,13 +35,8 @@ predictor_landmarks = dlib.shape_predictor(shape_predictor_path)
 app = Flask(__name__)
 
 
-for (top, right, bottom, left), face_encoding in zip(face_locations, face_encodings):
-    # Restante do código...
-
-    # Encontrar landmarks faciais com dlib
-    landmarks = predictor_landmarks(frame, dlib.rectangle(left, top, right, bottom))
-    
-    # Desenhar as landmarks no rosto identificado
+def desenhar_landmarks(frame, landmarks):
+    """Desenha landmarks faciais no frame."""
     for i in range(68):
         x, y = landmarks.part(i).x, landmarks.part(i).y
         cv2.circle(frame, (x, y), 2, (0, 255, 0), -1)
@@ -100,11 +95,9 @@ def reconhecimento_facial():
 
                 # Encontrar landmarks faciais com dlib
                 landmarks = predictor_landmarks(frame, dlib.rectangle(left, top, right, bottom))
-                
-                # Desenhar as landmarks no rosto identificado
-                for i in range(68):
-                    x, y = landmarks.part(i).x, landmarks.part(i).y
-                    cv2.circle(frame, (x, y), 2, (0, 255, 0), -1)
+
+                # Chamar a função para desenhar landmarks
+                desenhar_landmarks(frame, landmarks)
 
         # Exibir o frame com o reconhecimento facial
         cv2.imshow('Reconhecimento Facial', frame)
@@ -169,4 +162,4 @@ def parar_reconhecimento_facial():
     return render_template('parado.html', imagem_base64=frame_base64)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, use_reloader=False)

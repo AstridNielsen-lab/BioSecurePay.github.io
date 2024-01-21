@@ -2,83 +2,17 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BioSecurePay - Interesse no App</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 400px;
-            margin: 0 auto;
-            padding: 20px;
-        }
+        /* Estilos aqui... */
 
-        h1 {
-            text-align: center;
-        }
-
-        form {
-            display: flex;
-            flex-direction: column;
-            margin-bottom: 20px; /* Espaço entre os campos e a câmera */
-        }
-
-        label {
-            margin-bottom: 5px;
-        }
-
-        input {
-            margin-bottom: 10px;
-            padding: 8px;
-        }
-
-        small {
-            font-size: 80%;
-            color: #888;
-            margin-bottom: 10px;
-        }
-
-        input[type="submit"] {
-            background-color: #4CAF50;
-            color: white;
-            cursor: pointer;
-        }
-
-        input[type="submit"]:hover {
-            background-color: #45a049;
-        }
-
-        input[type="tel"] {
-            margin-bottom: 10px;
-            padding: 8px;
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        /* Estilo para a caixa da câmera e mensagem */
-        #camera-box {
-            border: 2px solid #ddd;
-            padding: 10px;
-            margin-bottom: 20px;
-            text-align: center;
-            position: relative;
-        }
-
-        #start-message {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 18px;
-            color: #888;
-        }
-
-        /* Estilo para os botões abaixo da câmera */
-        #camera-buttons {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 20px;
+        /* Estilo para o botão do GitHub */
+        #github-button {
+            margin-top: 20px;
         }
     </style>
     <script>
@@ -90,13 +24,26 @@
         function pararReconhecimentoFacial() {
             fetch('/parar_reconhecimento_facial');
         }
+
+        // Adicionando funções JavaScript para salvar e enviar
+        function salvar() {
+            // Lógica para salvar o rosto reconhecido
+            // ...
+        }
+
+        function enviar() {
+            // Lógica para enviar os dados
+            // ...
+            document.getElementById("interesse-form").submit();
+        }
     </script>
 </head>
+
 <body>
 
     <h1>Formulário de Interesse BioSecurePay</h1>
 
-    <form action="/interesse" method="POST">
+    <form id="interesse-form" action="/interesse" method="POST">
         <label for="nome">Nome:</label>
         <input type="text" id="nome" name="nome" required>
 
@@ -108,10 +55,9 @@
         <input type="tel" id="telefone" name="telefone" required pattern="[0-9]{13}" placeholder="Ex: 5511970603441">
         <small>Por favor, insira um número de telefone válido (apenas números).</small>
 
-        <input type="submit" value="Enviar">
+        <!-- Removendo o botão de enviar do formulário -->
     </form>
 
-<<<<<<< HEAD
     <!-- Espaço para interação com a câmera -->
     <div id="camera-box">
         <img src="" alt="Câmera" id="camera-image" style="max-width: 100%; height: auto; display: none;">
@@ -123,45 +69,20 @@
         <button onclick="iniciarReconhecimentoFacial()">Iniciar Reconhecimento Facial</button>
         <button onclick="pararReconhecimentoFacial()">Parar Reconhecimento Facial</button>
         <button onclick="salvar()">Salvar</button>
-        <button onclick="enviar()">Enviar</button>
     </div>
 
-  <!-- Adicione o botão do GitHub abaixo do formulário -->
-    <a href="https://github.com/AstridNielsen-lab/BioSecurePay.github.io" target="_blank">
-        <button style="background-color: #4CAF50; color: white; padding: 10px; width: 100%; cursor: pointer;">
-=======
-  <!-- Adicione o botão do GitHub abaixo do formulário -->
-    <a href="https://github.com/AstridNielsen-lab/BioSecurePay.github.io" target="_blank">
-        <button style="background-color: #4CAF50; color: white; padding: 10px; margin-top: 20px; width: 100% ;cursor: pointer;">
->>>>>>> 8f3ebd45fd6324670c19ff5dd1a26ebf5827cdad
+    <!-- Adicione o botão "Enviar" abaixo de tudo -->
+    <button id="enviar-button" onclick="enviar()" style="background-color: #4CAF50; color: white; padding: 10px; width: 100%; cursor: pointer; margin-top: 20px;">
+        Enviar
+    </button>
+
+    <!-- Adicione o botão do GitHub abaixo do formulário -->
+    <a id="github-button" href="https://github.com/AstridNielsen-lab/BioSecurePay.github.io" target="_blank">
+        <button style="background-color: #4CAF50; color: white; padding: 10px; width: 100%; cursor: pointer; margin-top: 20px;">
             Ver no GitHub
         </button>
     </a>
 
-<<<<<<< HEAD
-    <script>
-    // Adicionando funções JavaScript para iniciar e parar o reconhecimento facial
-    function iniciarReconhecimentoFacial() {
-        fetch('/iniciar_reconhecimento_facial');
-    }
-
-    function pararReconhecimentoFacial() {
-        fetch('/parar_reconhecimento_facial');
-    }
-
-    // Adicionando funções JavaScript para salvar e enviar
-    function salvar() {
-        // Lógica para salvar o rosto reconhecido
-        // ...
-    }
-
-    function enviar() {
-        // Lógica para enviar os dados
-        // ...
-    }
-</script>
-
-=======
->>>>>>> 8f3ebd45fd6324670c19ff5dd1a26ebf5827cdad
 </body>
+
 </html>
