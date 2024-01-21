@@ -99,15 +99,47 @@
         #github-button {
             margin-top: 20px;
         }
+
+        video {
+            max-width: 100%;
+            height: auto;
+        }
     </style>
+
     <script>
-        // Adicionando funções JavaScript para iniciar e parar o reconhecimento facial
-        function iniciarReconhecimentoFacial() {
-            fetch('/iniciar_reconhecimento_facial');
+        let videoStream = null;
+
+        async function iniciarReconhecimentoFacial() {
+            const videoElement = document.getElementById('camera-video');
+            const cameraBox = document.getElementById('camera-box');
+            const startMessage = document.getElementById('start-message');
+
+            try {
+                videoStream = await navigator.mediaDevices.getUserMedia({ video: true });
+                videoElement.srcObject = videoStream;
+                videoElement.play();
+
+                cameraBox.style.border = 'none'; // Removendo a borda para mostrar o vídeo
+                startMessage.style.display = 'none'; // Ocultando a mensagem inicial
+            } catch (error) {
+                console.error('Erro ao acessar a câmera:', error);
+                alert('Não foi possível acessar a câmera. Verifique as permissões.');
+            }
         }
 
         function pararReconhecimentoFacial() {
-            fetch('/parar_reconhecimento_facial');
+            if (videoStream) {
+                videoStream.getTracks().forEach(track => track.stop());
+            }
+
+            const videoElement = document.getElementById('camera-video');
+            videoElement.srcObject = null;
+
+            const cameraBox = document.getElementById('camera-box');
+            const startMessage = document.getElementById('start-message');
+
+            cameraBox.style.border = '2px solid #ddd'; // Restaurando a borda
+            startMessage.style.display = 'block'; // Restaurando a mensagem inicial
         }
     </script>
 </head>
@@ -133,7 +165,7 @@
 
     <!-- Espaço para interação com a câmera -->
     <div id="camera-box">
-        <img src="" alt="Câmera" id="camera-image" style="max-width: 100%; height: auto; display: none;">
+        <video id="camera-video" style="max-width: 100%; height: auto;"></video>
         <div id="start-message">Clique para iniciar o reconhecimento facial</div>
     </div>
 
@@ -168,4 +200,3 @@
 </body>
 
 </html>
-
