@@ -75,3 +75,5 @@ source venv/bin/activate  # para sistemas Unix
 
 <h2>Autor</h2>
 <p>Astrid Nielsen - <a href="https://github.com/AstridNielsen-lab" target="_blank">GitHub</a></p>
+
+![BioSecurePay App](https://raw.githubusercontent.com/AstridNielsen-lab/BioSecurePay.github.io/master/app.jpg)
