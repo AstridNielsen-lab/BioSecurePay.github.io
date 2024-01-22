@@ -1,6 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -146,66 +143,25 @@
             startMessage.style.display = 'block'; // Restaurando a mensagem inicial
         }
 
-function salvar() {
-        const formulario = document.getElementById('formulario');
-        const imagemCanvas = document.createElement('canvas');
-        const video = document.getElementById('camera-video');
-
-        // Capturar uma imagem do vídeo e converter para base64
-        imagemCanvas.width = video.videoWidth;
-        imagemCanvas.height = video.videoHeight;
-        const contexto = imagemCanvas.getContext('2d');
-        contexto.drawImage(video, 0, 0, imagemCanvas.width, imagemCanvas.height);
-        const imagemBase64 = imagemCanvas.toDataURL('image/jpeg');
-
-        // Adicionar um campo de entrada oculto ao formulário
-        const imagemInput = document.createElement('input');
-        imagemInput.type = 'hidden';
-        imagemInput.name = 'imagemBase64';
-        imagemInput.value = imagemBase64;
-        formulario.appendChild(imagemInput);
-
-        // Agora, envie o formulário
-        formulario.submit();
-    }
-</script>
+    </script>
 
 </head>
 
 <body>
 
-    <h1>Formulário de Interesse BioSecurePay</h1>
-
-    <!-- Adicione este elemento HTML abaixo do título -->
-    <div id="sugestao"></div>
-
-   
-     <form id="formulario" action="/processar_cadastro" method="POST">
-        <label for="nome">Nome:</label>
-        <input type="text" id="nome" name="nome" required>
-
-        <label for="email">E-mail:</label>
-        <input type="email" id="email" name="email" required>
-
-        <!-- Adicionando o campo de telefone -->
-        <label for="telefone">Telefone:</label>
-        <input type="tel" id="telefone" name="telefone" required pattern="[0-9]{13}" placeholder="Ex: 5511970603441">
-        <small>Por favor, insira um número de telefone válido (apenas números).</small>
+    <h1>BioSecurePay APP</h1>
 
 
-<!-- Espaço para interação com a câmera -->
-    <div id="camera-box">
-        <video id="camera-video" style="max-width: 100%; height: auto;"></video>
-        <div id="start-message">Clique para iniciar o reconhecimento facial</div>
-    </div> 
+ <h1>Evolução Digital</h1>
 
- <!-- Botões abaixo da câmera -->
-    <div id="camera-buttons">
-        <button onclick="iniciarReconhecimentoFacial()">Iniciar Reconhecimento Facial</button>
+    <form action="/login" method="post">
+<div id="camera-buttons">
+        <button type="submit" formaction="/cadastro">Cadastrar</button>
+        <button type="submit" formaction="/pagina_pessoal">Entrar</button>
+    </form>
 
-<button onclick="salvar()">Salvar</button>
-</div>
-   </form>
+ 
+  
 
     
 </body>
