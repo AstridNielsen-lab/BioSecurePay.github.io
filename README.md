@@ -9,7 +9,7 @@
   
 
 <h2>Descrição</h2>
-<p>BioSecurePay é um sistema de reconhecimento facial com integração a um formulário web para coleta de dados de interesse.</p>
+<p>BioSecurePay é um sistema de reconhecimento facial com integração aos Bancos para coleta de dados de interesse.</p>
 
 <h2>Requisitos</h2>
 <ul>
