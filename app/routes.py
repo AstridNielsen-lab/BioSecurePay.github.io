@@ -1,4 +1,4 @@
-from flask import render_template, request, send_file
+from flask import app, render_template, request, send_file
 from app.facial_validation import reconhecimento_facial_sugerindo_validando, processar_validacao_facial
 import cv2
 import dlib
@@ -17,11 +17,6 @@ font_sugestao = cv2.FONT_HERSHEY_SIMPLEX
 tamanho_sugestao = 1
 cor_sugestao = (255, 255, 255)
 espessura_sugestao = 2
-
-# Rota para a página principal
-@app.route('/')
-def home():
-    return render_template('index.html')
 
 # Rota para lidar com o formulário e iniciar a validação facial
 @app.route('/validacao_facial', methods=['POST'])
