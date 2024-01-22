@@ -3,9 +3,10 @@
 <table>
   <tr>
     <td>
-      <img src="https://raw.githubusercontent.com/AstridNielsen-lab/BioSecurePay.github.io/master/app.jpg" alt="BioSecurePay App">
-    </td>
-    <td>
+     <img src="https://raw.githubusercontent.com/AstridNielsen-lab/BioSecurePay.github.io/main/reconhecer%20digital.jpeg" alt="BioSecurePay App">
+     <img src="https://raw.githubusercontent.com/AstridNielsen-lab/BioSecurePay.github.io/main/reconhecer%20retina.jpeg" alt="BioSecurePay App">
+     <img src="https://raw.githubusercontent.com/AstridNielsen-lab/BioSecurePay.github.io/main/reconhecer%20rosto.jpeg" alt="BioSecurePay App">     
+  
 
 <h2>Descrição</h2>
 <p>BioSecurePay é um sistema de reconhecimento facial com integração a um formulário web para coleta de dados de interesse.</p>
