@@ -1,5 +1,3 @@
-<!-- index.html -->
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -95,14 +93,20 @@
             background-color: #45a049;
         }
 
-        /* Estilo para o botão do GitHub */
-        #github-button {
+        /* Estilo para o botão */
+        #button {
             margin-top: 20px;
         }
 
         video {
             max-width: 100%;
             height: auto;
+        }
+
+        /* Adicione este estilo para a sugestão */
+        #sugestao {
+            text-align: center;
+            margin-bottom: 10px;
         }
     </style>
 
@@ -141,14 +145,42 @@
             cameraBox.style.border = '2px solid #ddd'; // Restaurando a borda
             startMessage.style.display = 'block'; // Restaurando a mensagem inicial
         }
-    </script>
+
+function salvar() {
+        const formulario = document.getElementById('formulario');
+        const imagemCanvas = document.createElement('canvas');
+        const video = document.getElementById('camera-video');
+
+        // Capturar uma imagem do vídeo e converter para base64
+        imagemCanvas.width = video.videoWidth;
+        imagemCanvas.height = video.videoHeight;
+        const contexto = imagemCanvas.getContext('2d');
+        contexto.drawImage(video, 0, 0, imagemCanvas.width, imagemCanvas.height);
+        const imagemBase64 = imagemCanvas.toDataURL('image/jpeg');
+
+        // Adicionar um campo de entrada oculto ao formulário
+        const imagemInput = document.createElement('input');
+        imagemInput.type = 'hidden';
+        imagemInput.name = 'imagemBase64';
+        imagemInput.value = imagemBase64;
+        formulario.appendChild(imagemInput);
+
+        // Agora, envie o formulário
+        formulario.submit();
+    }
+</script>
+
 </head>
 
 <body>
 
     <h1>Formulário de Interesse BioSecurePay</h1>
 
-    <form action="/interesse" method="POST">
+    <!-- Adicione este elemento HTML abaixo do título -->
+    <div id="sugestao"></div>
+
+   
+     <form id="formulario" action="/processar_cadastro" method="POST">
         <label for="nome">Nome:</label>
         <input type="text" id="nome" name="nome" required>
 
@@ -160,43 +192,22 @@
         <input type="tel" id="telefone" name="telefone" required pattern="[0-9]{13}" placeholder="Ex: 5511970603441">
         <small>Por favor, insira um número de telefone válido (apenas números).</small>
 
-        <input type="submit" value="Enviar">
-    </form>
 
-    <!-- Espaço para interação com a câmera -->
+<!-- Espaço para interação com a câmera -->
     <div id="camera-box">
         <video id="camera-video" style="max-width: 100%; height: auto;"></video>
         <div id="start-message">Clique para iniciar o reconhecimento facial</div>
-    </div>
+    </div> 
 
-    <!-- Botões abaixo da câmera -->
+ <!-- Botões abaixo da câmera -->
     <div id="camera-buttons">
         <button onclick="iniciarReconhecimentoFacial()">Iniciar Reconhecimento Facial</button>
-        <button onclick="pararReconhecimentoFacial()">Parar Reconhecimento Facial</button>
-        <button onclick="salvar()">Salvar</button>
-        <button onclick="enviar()">Enviar</button>
-    </div>
 
-    <!-- Adicione o botão do GitHub abaixo do formulário -->
-    <a id="github-button" href="https://github.com/AstridNielsen-lab/BioSecurePay.github.io" target="_blank">
-        <button style="background-color: #4CAF50; color: white; padding: 10px; width: 100%; cursor: pointer;">
-            Ver no GitHub
-        </button>
-    </a>
+<button onclick="salvar()">Salvar</button>
+</div>
+   </form>
 
-    <script>
-        // Adicionando funções JavaScript para salvar e enviar
-        function salvar() {
-            // Lógica para salvar o rosto reconhecido
-            // ...
-        }
-
-        function enviar() {
-            // Lógica para enviar os dados
-            // ...
-        }
-    </script>
-
+    
 </body>
 
 </html>
