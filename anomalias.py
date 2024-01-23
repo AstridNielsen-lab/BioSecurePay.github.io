@@ -1,6 +1,29 @@
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
+from sqlalchemy import create_engine, Column, Integer, Float, String, Boolean, DateTime
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
+from datetime import datetime
+
+Base = declarative_base()
+
+class Celula(Base):
+    __tablename__ = 'celulas'
+
+    id = Column(Integer, primary_key=True)
+    tamanho = Column(Float)
+    forma = Column(Integer)
+    diferenca_cor = Column(Float)
+    descricao = Column(String)
+    data_criacao = Column(DateTime, default=datetime.utcnow)
+
+    # Substitua 'sqlite:///celulas.db' pelo URI do seu banco de dados
+engine = create_engine('sqlite:///celulas.db')
+Base.metadata.create_all(engine)
+
+Session = sessionmaker(bind=engine)
+session = Session()
 
 # Carrega a imagem de exemplo
 imagem = cv2.imread(r'\Users\Dell\PycharmProjects\biosecurepay\imagem.png')
@@ -103,8 +126,7 @@ for parametro, descricao in mapeamento_descricoes.items():
     if parametro in diagnostico.lower():
         descricoes_infestacao.append(descricao)
 
-# Exibir os resultados individuais de cada célula
-for i in range(len(contornos)):
+ # Exibe os resultados individuais de cada célula
     descricao = ""
     if porcentagem_volume[i] < 100:
         descricao += "Atrofia celular, "
@@ -115,6 +137,38 @@ for i in range(len(contornos)):
 
     print(
         f"Célula {i + 1}: Tamanho = {porcentagem_volume[i]:.2f}%, Forma = {formas[i]}, Diferença de Cor = {diferencas_cor[i]:.2f}, {descricao}")
+
+    # Cria o objeto Celula e adiciona à sessão
+    celula = Celula(
+        tamanho=tamanhos[i],  # Usar a lista tamanhos
+        forma=formas[i],
+        diferenca_cor=diferencas_cor[i],
+        descricao=descricao,
+    )
+    session.add(celula)
+
+# Commit para salvar as alterações no banco de dados
+session.commit()
+session.close()
+
+# Exibe a quantidade total de infestação
+print(f"Quantidade total de Relação: {quantidade_infestacao:.2f} %")
+print(f"Nível de Relação: {', '.join(descricoes_infestacao)}")
+print(f"Porcentagem em relação ao usuário: {porcentagem_infestacao:.2f}%")
+
+# Cria o gráfico
+plt.figure()
+plt.plot(porcentagem_volume, 'r', label='Tamanho (em porcentagem)')
+plt.plot(diferencas_cor, 'g', label='Diferença de Cor')
+plt.xlabel('Células')
+plt.ylabel('Valores')
+plt.title('Detecção de Anomalias')
+plt.legend()
+
+# Exibe a imagem original com os contornos
+cv2.imshow("Imagem com Contornos", imagem)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
 
 # Exibir a quantidade total de infestação
 print(f"Quantidade total de Relação: {quantidade_infestacao:.2f} %")
@@ -129,6 +183,10 @@ plt.xlabel('Células')
 plt.ylabel('Valores')
 plt.title('Detecção de Anomalias')
 plt.legend()
+
+# Commit para salvar as alterações no banco de dados
+session.commit()
+session.close()
 
 # Exibe a imagem original com os contornos
 cv2.imshow("Imagem com Contornos", imagem)
